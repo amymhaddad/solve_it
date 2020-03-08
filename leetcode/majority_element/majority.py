@@ -14,29 +14,6 @@ def majority_element_approach_1(nums):
     return sorted_numbers
 
 
-print(majority_element(nums))
-
-
 def majority_element_approach_2(nums):
-    sorted_nums = sorted(nums)
-
-    count = 1
-    num = 0
-    i = 1
-
-    number_counter = {}
-
-    while i < len(sorted_nums):
-        if sorted_nums[i] == sorted_nums[num]:
-            count += 1
-            i += 1
-        else:
-            number_counter[sorted_nums[num]] = count
-            count = 1
-            num = i
-            i += 1
-        number_counter[sorted_nums[num]] = count
-    return sorted(number_counter, reverse=True)[0]
-
-
-print(majority_element_approach_2(nums))
+    nums.sort()
+    return nums[len(nums) // 2]

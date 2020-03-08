@@ -1,7 +1,4 @@
-from majority import (
-    majority_element_approach_1, 
-    majority_element_approach_2,
-)
+from majority import majority_element_approach_1, majority_element_approach_2
 
 
 def test_majority():
