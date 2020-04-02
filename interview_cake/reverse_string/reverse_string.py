@@ -9,24 +9,23 @@ def reverse(list_string):
     if len(list_string) <= 1:
         return list_string
 
-    # if list_string[left] == list_string[right]:
-    #     break
-    # elif len(list_string) // 2 == right:
-    #     break
-    # else:
-    # import pdb
+    while True:
+        # import pdb
 
-    # pdb.set_trace()
+        # pdb.set_trace()
+        # Update this test to account for when all letters ahve been reversed and only have a middle char
+        if left + right <= 1:
+            break
 
-    list_string[left], *_, list_string[right] = list_string
+        elif len(list_string) // 2 == right:
+            break
 
-    # import pdb
+        else:
+            list_string[left], *_, list_string[right] = list_string
 
-    # pdb.set_trace()
-
-    # right += 1
-    # left -= 1
-    print(list_string)
+            right += 1
+            left -= 1
+    return list_string
 
 
 print(reverse(list_string))
