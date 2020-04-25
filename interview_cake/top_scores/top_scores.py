@@ -1,36 +1,43 @@
 
 
-unsorted_scores = [50, 20, 60]
+# unsorted_scores = [50, 20, 60, 20]
 
 
 def sort_scores(unsorted_scores, highest_possible_score):
-    top = 1
-    bottom = 0
 
-    if len(unsorted_scores) <= 1:
-        return unsorted_scores 
+    counts = {}
 
-    while top <= len(unsorted_scores):
-        if bottom == top:
-            break
+    scores = ""
+
+    for num in unsorted_scores:
+        counts[num] = counts.get(num, 0) + 1
+
+    for num in range(highest_possible_score, 0, -1):
+        if num in counts:
+            while counts[num] != 0:
+                scores += str(num) + " "
+                counts[num] -= 1
+        
+        
             
-        import pdb; pdb.set_trace()
-        if unsorted_scores[bottom] > unsorted_scores[top]:
-            top += 1
-            
-        elif unsorted_scores[bottom] < unsorted_scores[top]:
-            unsorted_scores[bottom], unsorted_scores[top] = unsorted_scores[top], unsorted_scores[bottom]
-            bottom += 1
-            top += 1
-    return unsorted_scores
+    return [scores]
+
+# nums = [4, 8, 4, 2]
+
+# counts = []
+
+# for i, num in enumerate(nums):
+#     repeats = nums.count(num)
+#     if num in counts:
+#         continue
+#     counts.insert(num-1, repeats)
+
+# print(counts)
 
 
-# print(sort_scores([37, 89, 41, 65, 91, 53], 100))
-
-nums = [4, 8, 4 ,2, 9, 9, 6, 2, 9]
 
 
-count_scores = []
-for num in nums:
-    print(nums.count(num))
+
+
+
 
