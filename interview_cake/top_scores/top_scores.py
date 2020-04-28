@@ -31,7 +31,7 @@ def sort_scores(unsorted_scores, highest_possible_score):
 # Approach 2
 
 
-nums = [4, 4, 7, 1]
+nums = [2, 7, 8, 1, 8]
 
 max_score = 10
 
@@ -45,33 +45,53 @@ for num in range(0, max_score):
             counts[num] += repeats
             repeats -= 1
 
-
-# need to decrement counts by 1 each time theres a count greatetr than 1
-index = 0
-
-
-for i in range(len(counts) - 1, 0, -1):
-    num = counts[i]
-    if num > 0:
-        import pdb
-
-        pdb.set_trace()
-        nums[index] = i
-        index += 1
-        num -= 1
+#tuple to easily see the output 
+for num, count in enumerate(nums):
+    print(num, count)
 
 
-print(nums)
+sorted_nums = []
+for i in range(len(counts)-1, -1, -1):
+    count = counts[i]
+    if count:
+        sorted_nums.extend([i]*count)
+
+# print(sorted_nums)
+
+ 
+
+
+
+# for i in range(len(counts), 0, -1):
+
+#     num = counts[i - 1]
+
+#     if num > 0:
+
+#     # import pdb
+
+#     # pdb.set_trace()
+#     # nums[index] = i
+#     # index += 1
+#     num -= 1
+# print(num)
+
+# print(nums)
 
 
 # for i, index in enumerate(counts):
+
 #     if counts[i] > 0:
-#         # import pdb
+#         print(index)
+
+#         #     import pdb
 
 #         # pdb.set_trace()
 #         nums[index] = i
 # print(nums)
 # [0, 1, 1, 0, 1, 0, 0, 1, 0, 0]
+
+
 
 # See if the score is in the range of numbers. IF it is, then iterate through the nubmer of times it's included
 
