@@ -21,7 +21,6 @@ def test_repeated_scores():
     assert sort_scores([20, 10, 30, 30, 10, 20], 100) == [30, 30, 20, 20, 10, 10]
 
 
-
 # #tuple to easily see the output
 # for num, count in enumerate(nums):
 #     print(num, count)
