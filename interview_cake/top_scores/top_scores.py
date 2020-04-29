@@ -45,14 +45,13 @@ for num in range(0, max_score):
             counts[num] += repeats
             repeats -= 1
 
-new_nums = []
-index = 0
+
+index = -1
 for i, num in enumerate(counts):
     if num:
         while num > 0:
             nums[index] = i
-            # new_nums.append(i)
             num -= 1
-            index += 1
+            index -= 1
 
 print(nums)
