@@ -11,20 +11,15 @@ Minimize the total number of operations.
 
 
 def move_zero_numbers(nums):
-    index = 1
-    num = 0
+    new_nums = [0] * len(nums)
 
-    while index < len(nums):
-        if nums[num] == 0 and nums[index] == 0:
-            index += 1
+    i = 0
+    for num in nums:
+        if num:
+            new_nums[i] = num
+            i += 1
 
-        elif nums[num] == 0:
-            nums[num], nums[index] = nums[index], nums[num]
-            index += 1
-            num += 1
-
-        else:
-            index += 1
-            num += 1
+    for i in range(len(new_nums)):
+        nums[i] = new_nums[i]
 
     return nums
