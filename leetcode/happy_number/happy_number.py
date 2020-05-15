@@ -1,36 +1,38 @@
 
 nums_sqd = {
-    1: 1 ** 1,
-    2: 2 ** 2,
-    3: 3 ** 3,
-    4: 4 ** 4,
-    5: 5 ** 5,
-    6: 6 ** 6,
-    7: 7 ** 7,
-    8: 8 ** 8,
-    9: 9 ** 9,
-    0: 1,
+    1: 1 * 1,
+    2: 2 * 2,
+    3: 3 * 3,
+    4: 4 * 4,
+    5: 5 * 5,
+    6: 6 * 6,
+    7: 7 * 7,
+    8: 8 * 8,
+    9: 9 * 9,
+    0: 0,
 }
 
 
-def is_happy(n):
-    count = sum(1 for i in range(len(str(n))))
-    all_nums = list(map(int, str(n)))
+def is_happy(number):
+    
+    all_nums = list(map(int, str(number)))
     i = 0
     total = 0
 
-    # use n to update on each iteration (set it to 100 to prevent hitting an endless loop)
-    while i < 100:
-
-        # cycle through each number in all_nums and index into dictionary to get each sq; add the value of each number to total
-
-        # have a checker to see if total is < 10.  Is the number 1? If 1, then return True. If not then, False
-        # IF total is > 10, then get the sq of each number in the next pair of numbres (ie, get 82)
-            # set total to 0; set n to total; call all_nums (to get teh NEW list of nums)
-        i += 1
-
-
-print(is_happy(1111111))
+    while i <= 6:
+        for num in all_nums:
+            total += nums_sqd[num]
+       
+        if total == 1:
+            return True
+        else:
+          
+            number = total
+            total = 0
+            all_nums = list(map(int, str(number)))
+            i += 1
+    return False
+print(is_happy(19))
  
 
 # last_num_sqd = int(math.pow((n % 10), 2))
