@@ -13,8 +13,7 @@ def get_permutations(string):
     permutations = set()
 
     for letter in letters:
-
-        word_permutations = get_permutations(string[1:])
-        for word in word_permutations:
-            permutations.add(letter + word)
+        word_permutations = get_permutations(letters - set(letter))
+        for permutation in word_permutations:
+            permutations.add(letter + permutation)
     return permutations
