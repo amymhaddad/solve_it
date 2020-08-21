@@ -59,7 +59,7 @@ class Bowl(object):
         self.scoops = []
 
     def add_scoop(self, *scoops):
-        self.scoops[: Bowl.max_scoops - len(self.scoops)]
+        self.scoops += scoops[: Bowl.max_scoops - len(self.scoops)]
 
 
 s1 = Scoops("chocolate")
