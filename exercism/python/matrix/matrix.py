@@ -6,8 +6,5 @@ class Matrix:
         return [int(num) for num in self.matrix[index - 1].split() if num.isdigit()]
 
     def column(self, index):
-        column_numbers = []
-        for row in self.matrix:
-            each_row = row.split()
-            column_numbers.append(int(each_row[index - 1]))
-        return column_numbers
+        total = [numbers.split(" ") for numbers in self.matrix]
+        return [int(number[index - 1]) for number in total]
