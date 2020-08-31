@@ -5,8 +5,6 @@ Return the answer in an array.
 
 """
 
-from collections import deque, Counter, defaultdict
-
 
 def get_smallest(nums):
     num_counter = {num: [] for num in nums}
