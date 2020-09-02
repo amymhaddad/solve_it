@@ -56,7 +56,6 @@ class Cage(object):
             self.cage.append(animal)
 
     def __repr__(self):
-
         output = f"Cage {self.id}:\n"
         output += "\n".join(
             [f"\t{i} {animal}" for i, animal in enumerate(self.cage, 1)]
@@ -64,6 +63,34 @@ class Cage(object):
         return output
 
 
+c1 = Cage(1)  # ID numbers
+c1.add_animals(wolf, sheep1, sheep2)
+# print(c1)
+
+
 c2 = Cage(2)
 c2.add_animals(snake, parrot)
-print(c2)
+
+# print(c2)
+
+
+class Zoo(object):
+    def __init__(self):
+        self.total_cages = []
+
+    def add_cages(self, *cages):
+        for cage in cages:
+            self.total_cages.append(cage)
+
+    def __repr__(self):
+        output = ""
+        output += "".join(f"{cage}\n" for cage in self.total_cages)
+
+        # for cage in self.total_cages:
+        #     output += str(cage)
+        return output
+
+
+z = Zoo()
+z.add_cages(c1, c2)
+print(z)
