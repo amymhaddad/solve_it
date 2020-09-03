@@ -34,17 +34,22 @@ MORSE_CODE_REPRESENTATIONS = [
 
 def unique_morse_code_representations(words):
 
-    letters_to_morse_code = {
+    letter_to_morse_code = {
         letter: morse_code
-        for chars in MORSE_CODE_REPRESENTATIONS
-        for letter, morse_code in zip(lower, chars)
+        for letters in MORSE_CODE_REPRESENTATIONS
+        for letter, morse_code in zip(lower, letters)
     }
-    return letters_to_morse_code
+
+    unique_transformations = set()
+    each_transformation = ""
+
+    for word in words:
+        for letter in word:
+            each_transformation += letter_to_morse_code[letter]
+        unique_transformations.add(each_transformation)
+        each_transformation = ""
+
+    return len(unique_transformations)
 
 
 print(unique_morse_code_representations(["gin", "zen", "gig", "msg"]))
-
-
-# for chars in MORSE_CODE_REPRESENTATIONS:
-#     for letter, morse_code in zip(lower, chars):
-#         print(letter, morse_code)
