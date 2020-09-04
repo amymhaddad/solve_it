@@ -1,6 +1,5 @@
 import re
 
-
 def number_unique_emails(emails):
     all_unique_emails = set()
 
