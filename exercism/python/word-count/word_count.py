@@ -6,12 +6,13 @@ import re
 
 from collections import Counter
 
-sentence = "One,\nTwo,\nthree"
+sentence = ",\n,one,\n ,two \n 'three'"
 
 
 def count_words(sentence):
 
     letters_digits = "[\w'?]+"
+
     parsed_words = re.findall(letters_digits, sentence)
 
     case_insensitive_results = [word.lower() for word in parsed_words]
@@ -19,11 +20,9 @@ def count_words(sentence):
     return Counter(case_insensitive_results)
 
 
-# print(count_words(sentence))
+print(count_words(sentence))
 
 
-# def validate_data(sentence):
-#     return " ".join([letter.lower() for letter in sentence.split() if letter.isalpha()])
-
-
-# print(validate_data(sentence))
+# \w+\'\w{1} -- contractions
+#\'(\w+)\' -- quotes
+# [a-zA-Z]+\'*[a-zA-Z]+\b --> One or more letters with optional apostrophy one or more letters with word boundary

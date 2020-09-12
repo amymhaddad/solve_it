@@ -40,11 +40,11 @@ class WordCountTest(unittest.TestCase):
     def test_normalize_case(self):
         self.assertEqual(count_words("go Go GO Stop stop"), {"go": 3, "stop": 2})
 
-    # def test_with_apostrophes(self):
-    #     self.assertEqual(
-    #         count_words("First: don't laugh. Then: don't cry."),
-    #         {"first": 1, "don't": 2, "laugh": 1, "then": 1, "cry": 1},
-    #     )
+    def test_with_apostrophes(self):
+        self.assertEqual(
+            count_words("First: don't laugh. Then: don't cry."),
+            {"first": 1, "don't": 2, "laugh": 1, "then": 1, "cry": 1},
+        )
 
     # def test_with_quotations(self):
     #     self.assertEqual(
@@ -52,30 +52,30 @@ class WordCountTest(unittest.TestCase):
     #         {"joe": 1, "can't": 1, "tell": 1, "between": 1, "large": 2, "and": 1},
     #     )
 
-    # def test_substrings_from_the_beginning(self):
-    #     self.assertEqual(
-    #         count_words("Joe can't tell between app, apple and a."),
-    #         {
-    #             "joe": 1,
-    #             "can't": 1,
-    #             "tell": 1,
-    #             "between": 1,
-    #             "app": 1,
-    #             "apple": 1,
-    #             "and": 1,
-    #             "a": 1,
-    #         },
-    #     )
+    def test_substrings_from_the_beginning(self):
+        self.assertEqual(
+            count_words("Joe can't tell between app, apple and a."),
+            {
+                "joe": 1,
+                "can't": 1,
+                "tell": 1,
+                "between": 1,
+                "app": 1,
+                "apple": 1,
+                "and": 1,
+                "a": 1,
+            },
+        )
 
-    # def test_multiple_spaces_not_detected_as_a_word(self):
-    #     self.assertEqual(
-    #         count_words(" multiple   whitespaces"), {"multiple": 1, "whitespaces": 1}
-    #     )
+    def test_multiple_spaces_not_detected_as_a_word(self):
+        self.assertEqual(
+            count_words(" multiple   whitespaces"), {"multiple": 1, "whitespaces": 1}
+        )
 
-    # def test_alternating_word_separators_not_detected_as_a_word(self):
-    #     self.assertEqual(
-    #         count_words(",\n,one,\n ,two \n 'three'"), {"one": 1, "two": 1, "three": 1}
-    #     )
+    def test_alternating_word_separators_not_detected_as_a_word(self):
+        self.assertEqual(
+            count_words(",\n,one,\n ,two \n 'three'"), {"one": 1, "two": 1, "three": 1}
+        )
 
     # # Additional tests for this track
 
