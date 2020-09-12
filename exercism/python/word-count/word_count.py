@@ -6,11 +6,24 @@ import re
 
 from collections import Counter
 
+sentence = "One,\nTwo,\nthree"
+
 
 def count_words(sentence):
 
     letters_digits = "[\w'?]+"
-    result = re.findall(letters_digits, sentence)
+    parsed_words = re.findall(letters_digits, sentence)
 
-    return Counter(result)
+    case_insensitive_results = [word.lower() for word in parsed_words]
 
+    return Counter(case_insensitive_results)
+
+
+# print(count_words(sentence))
+
+
+# def validate_data(sentence):
+#     return " ".join([letter.lower() for letter in sentence.split() if letter.isalpha()])
+
+
+# print(validate_data(sentence))

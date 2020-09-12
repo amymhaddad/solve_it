@@ -32,13 +32,13 @@ class WordCountTest(unittest.TestCase):
             {"car": 1, "carpet": 1, "as": 1, "java": 1, "javascript": 1},
         )
 
-    # def test_include_numbers(self):
-    #     self.assertEqual(
-    #         count_words("testing, 1, 2 testing"), {"testing": 2, "1": 1, "2": 1}
-    #     )
+    def test_include_numbers(self):
+        self.assertEqual(
+            count_words("testing, 1, 2 testing"), {"testing": 2, "1": 1, "2": 1}
+        )
 
-    # def test_normalize_case(self):
-    #     self.assertEqual(count_words("go Go GO Stop stop"), {"go": 3, "stop": 2})
+    def test_normalize_case(self):
+        self.assertEqual(count_words("go Go GO Stop stop"), {"go": 3, "stop": 2})
 
     # def test_with_apostrophes(self):
     #     self.assertEqual(
