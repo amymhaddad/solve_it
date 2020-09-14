@@ -6,12 +6,12 @@ import re
 
 from collections import Counter
 
-sentence = ",\n,one,\n ,two \n 'three'"
+sentence = "go Go GO Stop stop"
 
 
 def count_words(sentence):
 
-    letters_digits = "[\w'?]+"
+    letters_digits = "[a-zA-Z\d]+'?[a-zA-Z]*"
 
     parsed_words = re.findall(letters_digits, sentence)
 
@@ -22,7 +22,10 @@ def count_words(sentence):
 
 print(count_words(sentence))
 
+# Counter({"go": 1, "Go": 1, "GO": 1, "Stop": 1, "stop": 1})
+
 
 # \w+\'\w{1} -- contractions
-#\'(\w+)\' -- quotes
+# \'(\w+)\' -- quotes
 # [a-zA-Z]+\'*[a-zA-Z]+\b --> One or more letters with optional apostrophy one or more letters with word boundary
+# //[(\w+)|(\w+\'?\w)]
