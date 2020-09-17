@@ -1,20 +1,31 @@
- 
-class Matrix {
-  constructor(string) {
-    this.string = string
-  }
+export class Matrix {
+	constructor(string) {
+		this.rows = this.processRows(string.split('\n'));
+		this.columns = this.processColumns(this.rows);
+	}
 
-  rows() {
-    let number = parseInt(this.string)
-    
-    return [number]
-  }
+	processRows(numbers) {
+		return numbers.map((num) => {
+			let row = num.split(' ');
 
-  // columns() {
-  //   throw new Error("Remove this statement and implement this function");
-  // }
+			let rowAsInt = row.map((int) => {
+				return parseInt(int);
+			});
+			return rowAsInt;
+		});
+	}
+
+	processColumns(rows) {
+		const eachColumn = [];
+
+		let i = 0;
+		while (i <= rows.length) {
+			let numberAtIndex = rows.map((row) => {
+				return row[i];
+			});
+			eachColumn.push(numberAtIndex);
+			i += 1;
+		}
+		return eachColumn;
+	}
 }
-
-// m = new Matrix('1')
-
-// console.log(m.rows())
