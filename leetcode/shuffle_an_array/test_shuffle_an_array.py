@@ -1,4 +1,4 @@
-from shuffle_an_array import shuffle
+from v2_shuffle import shuffle
 
 
 def test_shuffle_array():
@@ -21,3 +21,4 @@ def test_shuffle_array():
         10,
         10,
     ]
+    # assert shuffle([], 0 == [])
