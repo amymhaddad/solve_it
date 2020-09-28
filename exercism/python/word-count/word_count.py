@@ -10,15 +10,14 @@ sentence = "go Go GO she'd Stop stop won't 'large' and large"
 
 
 def count_words(sentence):
-    # Trying to match the contractions
-    # But if I pull out the contractions I can't differentiate this data from the rest
-    contractions = "[a-zA-Z]+'[a-zA-Z]"
 
-    all_contractions = re.findall(contractions, sentence)
+    # contractions = "[a-zA-Z\d]+ | [a-zA-Z]+'[a-zA-Z]"
 
-    letters_digits = "[a-zA-Z\d]+"
+    letters_digits = "[a-zA-Z]+'[a-zA-Z] | [a-zA-Z\d]+"
+
     parsed_words = re.findall(letters_digits, sentence)
     print(parsed_words)
+
     # case_insensitive_results = [word.lower() for word in parsed_words]
 
     # return Counter(case_insensitive_results)
