@@ -21,15 +21,15 @@ class CryptoSquareTest(unittest.TestCase):
         expected = "b"
         self.assertEqual(cipher_text(value), expected)
 
-    # def test_remove_punctuation(self):
-    #     value = "@1,%!"
-    #     expected = "1"
-    #     self.assertEqual(cipher_text(value), expected)
+    def test_remove_punctuation(self):
+        value = "@1,%!"
+        expected = "1"
+        self.assertEqual(cipher_text(value), expected)
 
-    # def test_9_character_plaintext_results_in_3_chunks_of_3_characters(self):
-    #     value = "This is fun!"
-    #     expected = "tsf hiu isn"
-    #     self.assertEqual(cipher_text(value), expected)
+    def test_9_character_plaintext_results_in_3_chunks_of_3_characters(self):
+        value = "This is fun!"
+        expected = "tsf hiu isn"
+        self.assertEqual(cipher_text(value), expected)
 
     # def test_8_character_plaintext_results_in_3_chunks_the_last_one_with_a_trailing_space(
     #     self
