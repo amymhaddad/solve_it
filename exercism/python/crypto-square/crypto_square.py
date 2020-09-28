@@ -18,12 +18,10 @@ def normalized_string(plain_text):
     return updated_string
 
 
-print(cipher_text(value))
-
 chars = "thisisfun"
 
 
-def rectangle(chars):
+def create_rectangle(chars):
     normalized_string_length = len(chars)
 
     r = 1
@@ -34,16 +32,33 @@ def rectangle(chars):
             c += 1
             continue
         r += 1
-    return r, c
+    return {"row": r, "column": c}
 
 
-print(rectangle(chars))
+rectangle = create_rectangle(chars)
 
-# chars = "imtgdvsfearwermayoogoanouuiontnnlvtwttddesaohghnsseoau"
 
-# for cols in range(9):
-#     for row in range(cols):
-#         if cols * row >= len(chars):
-#             if cols > row:
-#                 if cols - row <= 1:
-#                     print(cols, row)
+def parse_rectangle(rectangle):
+
+    each_row = ""
+    start = 0
+    end = rectangle["column"]
+
+    while end <= len(chars):
+        each_row += chars[start:end] + "\n"
+        start = end
+        end += rectangle["column"]
+
+    return each_row.strip()
+
+
+print(parse_rectangle(rectangle))
+
+
+# for i in range(0, len(chars), rectangle["column"]):
+#     print(i)
+#     each_row += chars[: chars[i]] + "\n"
+# print(each_row)
+
+# print(f"{chars[word]}\n")
+
