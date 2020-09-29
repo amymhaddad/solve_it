@@ -1,14 +1,13 @@
 import re
 
-
-chars = "thisisfun"
-
-
-def cipher_text(plain_text):
-    if not plain_text:
-        return ""
-    else:
-        return normalize_string(plain_text)
+# def cipher_text(plain_text):
+#     if not plain_text:
+#         return ""
+#    chars = normalize_string(plain_text)
+#    rectangle = create_rectangle(chars)
+#    rectangle_with_parsed_words = parse_rectangle(rectangle)
+#    encode = encoded_words(rectangle_with_parsed_words)
+#    return encode
 
 
 def normalize_string(plain_text):
@@ -18,7 +17,7 @@ def normalize_string(plain_text):
     )
 
 
-string = normalize_string(chars)
+# string = normalize_string(chars)
 
 
 def create_rectangle(chars):
@@ -34,10 +33,10 @@ def create_rectangle(chars):
     return {"row": r, "column": c}
 
 
-rectangle = create_rectangle(string)
+# rectangle = create_rectangle(string)
 
 
-def parse_rectangle(rectangle):
+def parse_rectangle(rectangle, chars):
     total_rows = []
     start = 0
     end = rectangle["column"]
@@ -53,14 +52,26 @@ def parse_rectangle(rectangle):
     return total_rows
 
 
-rectangle_with_parsed_words = parse_rectangle(rectangle)
+# rectangle_with_parsed_words = parse_rectangle(rectangle)
 
 
 def encoded_words(parsed_rectangle):
 
     cols = [list(col) for col in zip(*parsed_rectangle)]
-    return "".join(["".join(word).replace(",", "") + "\n" for word in cols]).strip()
+    return "".join(["".join(word).replace(",", "") + " " for word in cols]).strip()
 
 
-encode = encoded_words(rectangle_with_parsed_words)
-print(encode)
+# encode = encoded_words(rectangle_with_parsed_words)
+# print(encode)
+def cipher_text(plain_text):
+    if not plain_text:
+        return ""
+    else:
+        chars = normalize_string(plain_text)
+        rectangle = create_rectangle(chars)
+        rectangle_with_parsed_words = parse_rectangle(rectangle, chars)
+        encode = encoded_words(rectangle_with_parsed_words)
+        return encode
+
+
+# print(cipher_text("This is fun!"))
