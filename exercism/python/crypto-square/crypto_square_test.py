@@ -31,12 +31,12 @@ class CryptoSquareTest(unittest.TestCase):
         expected = "tsf hiu isn"
         self.assertEqual(cipher_text(value), expected)
 
-    # def test_8_character_plaintext_results_in_3_chunks_the_last_one_with_a_trailing_space(
-    #     self
-    # ):
-    #     value = "Chill out."
-    #     expected = "clu hlt io "
-    #     self.assertEqual(cipher_text(value), expected)
+    def test_8_character_plaintext_results_in_3_chunks_the_last_one_with_a_trailing_space(
+        self,
+    ):
+        value = "Chill out."
+        expected = "clu hlt io "
+        self.assertEqual(cipher_text(value), expected)
 
     # def test_54_character_plaintext_results_in_7_chunks_the_last_two_with_trailing_spaces(
     #     self
