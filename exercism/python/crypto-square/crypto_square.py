@@ -1,4 +1,5 @@
 value = "This is fun!"
+import re
 
 
 def cipher_text(plain_text):
@@ -40,32 +41,33 @@ rectangle = create_rectangle(chars)
 
 def parse_rectangle(rectangle):
     total_rows = []
-    # each_row = []
     start = 0
     end = rectangle["column"]
 
     while end <= len(chars):
         each_row = []
         for letter in chars[start:end]:
-            each_row.append(letter + ",")
+            each_row.append(letter)
         total_rows.append(each_row)
-        # each_row.append("\n")
         start = end
         end += rectangle["column"]
 
     return total_rows
-    # return "".join(each_row)
 
 
-# ['t,', 'h,', 'i,', '\n', 's,', 'i,', 's,', '\n', 'f,', 'u,', 'n,', '\n']
-
-# Iterate through the string; spilit on \n
-# Use zip to grab each col
 parsed_rectangle = parse_rectangle(rectangle)
 
-print(parsed_rectangle)
+
+def encoded_words(parsed_rectangle):
+
+    cols = [list(col) for col in zip(*parsed_rectangle)]
+    return "".join(["".join(word).replace(",", "") + "\n" for word in cols]).strip()
+
+    # decoded_words = ""
+    # for word in cols:
+    #     decoded_words += "".join(word).replace(",", "") + "\n"
+
+    # print(decoded_words)
 
 
-# each_row = [chars for rows in parsed_rectangle.split("\n") for chars in rows]
-# print(each_row)
-
+print(encoded_words(parsed_rectangle))
