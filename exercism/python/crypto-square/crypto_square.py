@@ -1,39 +1,41 @@
 import re
 
-# def cipher_text(plain_text):
-#     if not plain_text:
-#         return ""
-#    chars = normalize_string(plain_text)
-#    rectangle = create_rectangle(chars)
-#    rectangle_with_parsed_words = parse_rectangle(rectangle)
-#    encode = encoded_words(rectangle_with_parsed_words)
-#    return encode
-
 
 def normalize_string(plain_text):
 
-    return "".join(
-        [char.lower() for char in plain_text if char.isalpha() or char.isdigit()]
-    )
+    normalized_string = ""
+
+    for char in plain_text:
+        if char.isalpha() or char.isdigit():
+            normalized_string += char
+    return normalized_string
+
+    # return "".join(
+    #     [
+    #         char.lower()
+    #         for char in plain_text
+    #         if char.isalpha() or char.isdigit() or char.isspace()
+    #     ]
+    # )
 
 
 # string = normalize_string(chars)
 
 
 def create_rectangle(chars):
-    r = 1
-    c = 1
+    row = 1
+    col = 1
 
-    while r * c < len(chars):
-        if (c < r) or (c - r > 1):
-            c += 1
+    while row * col < len(chars):
+        if (col < row) or (col - row > 1):
+            col += 1
             continue
-        r += 1
-
-    return {"row": r, "column": c}
+        row += 1
+    return {"row": row, "column": col}
 
 
 # rectangle = create_rectangle(string)
+# print(rectangle)
 
 
 def parse_rectangle(rectangle, chars):
@@ -41,6 +43,7 @@ def parse_rectangle(rectangle, chars):
     start = 0
     end = rectangle["column"]
 
+    # Update this algo. Not kookign for the end of the string but the end of the cols. Need to decrement the cols by 1 on each iteration. If there are not enough letters, then add spaces
     while end <= len(chars):
         each_row = []
         for letter in chars[start:end]:
@@ -49,6 +52,7 @@ def parse_rectangle(rectangle, chars):
         start = end
         end += rectangle["column"]
 
+    print(total_rows)
     return total_rows
 
 
@@ -69,9 +73,12 @@ def cipher_text(plain_text):
     else:
         chars = normalize_string(plain_text)
         rectangle = create_rectangle(chars)
+        print(rectangle)
         rectangle_with_parsed_words = parse_rectangle(rectangle, chars)
         encode = encoded_words(rectangle_with_parsed_words)
         return encode
 
 
-# print(cipher_text("This is fun!"))
+print(cipher_text("Chill out."))
+# print(len("clu hlt io "))
+# cl hl io
