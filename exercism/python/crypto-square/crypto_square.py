@@ -15,9 +15,6 @@ def create_rectangle(chars):
     col = 1
 
     while row * col <= len(chars):
-        # import pdb
-
-        # pdb.set_trace()
         if (col < row) or (col - row > 1):
             row += 1
             continue
@@ -34,26 +31,13 @@ def parse_rectangle(rectangle, chars):
     start = 0
     end = rectangle["column"]
 
-    row_length = rectangle["row"]
-    total_phrase_length = len(chars)
-
-    while total_phrase_length % row_length != 0:
-        row_length += 1
-
-        total_phrase_length += 1
-
-    # print(row_length, total_phrase_length)
-
-    # Update this algo. Not kookign for the end of the string but the end of the cols. Need to decrement the cols by 1 on each iteration. If there are not enough letters, then add spaces
-    # while end <= len(chars):
-    #     each_row = []
-    #     for letter in chars[start:end]:
-    #         each_row.append(letter)
-    #     total_rows.append(each_row)
-    #     start = end
-    #     end += rectangle["column"]
-
-    # print(total_rows)
+    while end <= len(chars):
+        each_row = []
+        for letter in chars[start:end]:
+            each_row.append(letter)
+        total_rows.append(each_row)
+        start = end
+        end += rectangle["column"]
     return total_rows
 
 
@@ -61,9 +45,19 @@ def parse_rectangle(rectangle, chars):
 
 
 def encoded_words(parsed_rectangle):
+    cols = [["".join(word)] for word in parsed_rectangle]
 
-    cols = [list(col) for col in zip(*parsed_rectangle)]
-    return "".join(["".join(word).replace(",", "") + " " for word in cols]).strip()
+    i = 0
+    new_words = []
+    for cols in zip(*cols):
+        for word in cols:
+
+            x = list(word)
+            new_words.append(x[i])
+            # print(x[i])
+        i += 1
+    print(new_words)
+    # x = "".join(["".join(word) + " " for word in cols]).strip()
 
 
 # encode = encoded_words(rectangle_with_parsed_words)
@@ -88,3 +82,4 @@ print(
 # print(cipher_text("clu hlt io "))
 # cl hl io
 
+# imtgdv fearwe mayoog anouui ntnnlv wttdde aohghn sseoau
