@@ -2,6 +2,7 @@ import re
 
 
 def normalize_string(plain_text):
+
     return "".join(
         [char.lower() for char in plain_text if char.isalpha() or char.isdigit()]
     )
@@ -38,10 +39,12 @@ def parse_rectangle(rectangle, chars):
         total_rows.append(each_row)
         start = end
         end += rectangle["column"]
+
     return total_rows
 
 
 def encoded_words(parsed_rectangle):
+    print("p", parsed_rectangle)
     cols = [list(col) for col in zip(*parsed_rectangle)]
     return " ".join(["".join(word) + " " for word in cols])
 
@@ -49,18 +52,18 @@ def encoded_words(parsed_rectangle):
 # encode = encoded_words(rectangle_with_parsed_words)
 # print(encode)
 def cipher_text(plain_text):
-    if not plain_text:
-        return ""
+
+    chars = normalize_string(plain_text)
+    if len(chars) <= 1:
+        return chars
+
     else:
-        chars = normalize_string(plain_text)
         rectangle = create_rectangle(chars)
         rectangle_with_parsed_words = parse_rectangle(rectangle, chars)
         encode = encoded_words(rectangle_with_parsed_words)
         return encode
 
 
-# print(
-#     cipher_text(
-#         "If man was meant to stay on the ground, god would have given us roots."
-#     )
-# )
+value = "This is fun!"
+expected = "tsf hiu isn"
+print(cipher_text(value))
