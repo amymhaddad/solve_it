@@ -42,21 +42,14 @@ def parse_rectangle(rectangle, chars):
 
 
 # rectangle_with_parsed_words = parse_rectangle(rectangle)
+#  self.rows = [[int(x) for x in xs.split()] for xs in M.splitlines()]
+#         self.cols = [col for col in zip(*self.rows)]
 
 
 def encoded_words(parsed_rectangle):
-    cols = [["".join(word)] for word in parsed_rectangle]
+    cols = [list(col) for col in zip(*parsed_rectangle)]
+    print(cols)
 
-    i = 0
-    new_words = []
-    for cols in zip(*cols):
-        for word in cols:
-
-            x = list(word)
-            new_words.append(x[i])
-            # print(x[i])
-        i += 1
-    print(new_words)
     # x = "".join(["".join(word) + " " for word in cols]).strip()
 
 
@@ -79,7 +72,27 @@ print(
         "If man was meant to stay on the ground, god would have given us roots."
     )
 )
-# print(cipher_text("clu hlt io "))
-# cl hl io
 
-# imtgdv fearwe mayoog anouui ntnnlv wttdde aohghn sseoau
+
+# cols = [list(col) for col in zip(*self.rows)]
+
+
+class Matrix(object):
+    def __init__(self, M):
+        # self.rows = [[int(x) for x in xs.split()] for xs in M.splitlines()]
+        self.rows = [
+            ["i, f, m, a, n, w, a, s, "],
+            ["m, e, a, n, t, t, o, s, "],
+            ["t, a, y, o, n, t, h, e, "],
+            ["g, r, o, u, n, d, g, o, "],
+            ["d, w, o, u, l, d, h, a, "],
+            ["v, e, g, i, v, e, n, u, "],
+        ]
+        self.cols = [col for col in zip(*self.rows)]
+
+
+matrix = "89 1903 3\n18 3 1\n9 4 800"
+# m = Matrix(matrix)
+# print(m.rows)
+# print(m.cols)
+# # [[89, 1903, 3], [18, 3, 1], [9, 4, 800]]
