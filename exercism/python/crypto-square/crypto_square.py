@@ -32,7 +32,6 @@ def create_rectangle(chars):
     else:
         col = max(factors)
         row = col - 1
-
         while row * col < len(chars):
             if (col < row) or (col - row > 1):
                 row += 1
@@ -47,19 +46,33 @@ def create_rectangle(chars):
 
 
 def parse_rectangle(rectangle, chars):
-    print(rectangle)
+
     total_rows = []
     start = 0
     end = rectangle["column"]
 
-    while end < len(chars):
-        each_row = []
-        for letter in chars[start:end]:
-            each_row.append(letter)
+    # while end < len(chars):
+    while len(chars) - end > 1:
+        each_row = chars[start:end]
         total_rows.append(each_row)
         start = end
         end += rectangle["column"]
+        # import pdb
 
+        # pdb.set_trace()
+    total_rows.append(chars[start:])
+    print(total_rows)
+
+    #     each_row = []
+
+    #     for letter in chars[start:end]:
+    #         each_row.append(letter)
+    #     total_rows.append(each_row)
+    #     start = end
+    #     end += rectangle["column"]
+    #     if len(chars) - end == 1:
+    #         total_rows.append(chars[start:])
+    # print(total_rows)
     return total_rows
 
 
