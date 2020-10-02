@@ -8,9 +8,6 @@ def normalize_string(plain_text):
     )
 
 
-# string = normalize_string(chars)
-
-
 def create_rectangle(chars):
     # Test if perfect square
     factors = []
@@ -41,7 +38,7 @@ def create_rectangle(chars):
 
 
 # rectangle = create_rectangle("thisisfun")
-# rectangle = create_rectangle("ifmanwasmeanttostayonthegroundgodwouldhavegivenusrootsff")
+
 # print(rectangle)
 
 
@@ -51,29 +48,18 @@ def parse_rectangle(rectangle, chars):
     start = 0
     end = rectangle["column"]
 
-    # while end < len(chars):
     while len(chars) - end > 1:
         each_row = chars[start:end]
         total_rows.append(each_row)
         start = end
         end += rectangle["column"]
-        # import pdb
 
-        # pdb.set_trace()
     total_rows.append(chars[start:])
-    print(total_rows)
 
-    #     each_row = []
-
-    #     for letter in chars[start:end]:
-    #         each_row.append(letter)
-    #     total_rows.append(each_row)
-    #     start = end
-    #     end += rectangle["column"]
-    #     if len(chars) - end == 1:
-    #         total_rows.append(chars[start:])
-    # print(total_rows)
     return total_rows
+
+
+# rectangle = create_rectangle("ifmanwasmeanttostayonthegroundgodwouldhavegivenusrootsff")
 
 
 def encoded_words(parsed_rectangle):
@@ -96,10 +82,3 @@ def cipher_text(plain_text):
         encode = encoded_words(rectangle_with_parsed_words)
         return encode
 
-
-value = "This is fun!"
-expected = "tsf hiu isn"
-print(cipher_text(value))
-
-# p [['t', 'h', 'i', 's'], ['i', 's', 'f', 'u']]
-# ti  hs  if  su
