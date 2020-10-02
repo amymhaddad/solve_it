@@ -12,27 +12,47 @@ def normalize_string(plain_text):
 
 
 def create_rectangle(chars):
-    row = 1
-    col = 1
+    # Test if perfect square
+    factors = []
+    start = 2
+    char_length = len(chars)
 
-    while row * col <= len(chars):
-        if (col < row) or (col - row > 1):
-            row += 1
-            continue
-        col += 1
-    return {"row": row, "column": col}
+    while char_length != 1:
+        if char_length % start == 0:
+            factors.append(start)
+            result = char_length // start
+            char_length = result
+        else:
+            start += 1
+
+    if len(factors) == 2 and len(set(factors)) == 1:
+        return {"row": factors[0], "column": factors[0]}
+
+    # IF not perfect square:
+    else:
+        col = max(factors)
+        row = col - 1
+
+        while row * col < len(chars):
+            if (col < row) or (col - row > 1):
+                row += 1
+                continue
+            col += 1
+        return {"row": row, "column": col}
 
 
-# rectangle = create_rectangle(string)
+# rectangle = create_rectangle("thisisfun")
+# rectangle = create_rectangle("ifmanwasmeanttostayonthegroundgodwouldhavegivenusrootsff")
 # print(rectangle)
 
 
 def parse_rectangle(rectangle, chars):
+    print(rectangle)
     total_rows = []
     start = 0
     end = rectangle["column"]
 
-    while end <= len(chars):
+    while end < len(chars):
         each_row = []
         for letter in chars[start:end]:
             each_row.append(letter)
@@ -67,3 +87,6 @@ def cipher_text(plain_text):
 value = "This is fun!"
 expected = "tsf hiu isn"
 print(cipher_text(value))
+
+# p [['t', 'h', 'i', 's'], ['i', 's', 'f', 'u']]
+# ti  hs  if  su
