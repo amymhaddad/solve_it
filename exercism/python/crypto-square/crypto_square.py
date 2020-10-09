@@ -1,5 +1,8 @@
 import re
 
+# value = "ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots"
+value = "This is fun"
+
 
 def normalize_string(plain_text):
 
@@ -8,33 +11,35 @@ def normalize_string(plain_text):
     )
 
 
+chars = normalize_string(value)
+
+
 def create_rectangle(chars):
-    # Test if perfect square
-    factors = []
-    start = 2
-    char_length = len(chars)
+    row = 0
+    col = 1
 
-    while char_length != 1:
-        if char_length % start == 0:
-            factors.append(start)
-            result = char_length // start
-            char_length = result
-        else:
-            start += 1
+    col_larger_eq_row = col >= row
+    col_only_greater_by_one = col - row < -1
+    min_length = row * col < len(chars)
 
-    if len(factors) == 2 and len(set(factors)) == 1:
-        return {"row": factors[0], "column": factors[0]}
+    # I need to have some condintion to get the cols and rows to stop incrementing
+    while True:
+        
 
-    # IF not perfect square:
-    else:
-        col = max(factors)
-        row = col - 1
-        while row * col < len(chars):
-            if (col < row) or (col - row > 1):
-                row += 1
-                continue
+        if not col_larger_eq_row and not col_only_greater_by_one:
             col += 1
-        return {"row": row, "column": col}
+
+        row += 1
+    return {"row": row, "column": col}
+    # return row, col
+
+
+print(create_rectangle(chars))
+# while (col < row) or (col - row > 1):
+#     row += 1
+#         continue
+#     col += 1
+# return {"row": row, "column": col}
 
 
 # rectangle = create_rectangle("thisisfun")
@@ -42,43 +47,43 @@ def create_rectangle(chars):
 # print(rectangle)
 
 
-def parse_rectangle(rectangle, chars):
+# def parse_rectangle(rectangle, chars):
 
-    total_rows = []
-    start = 0
-    end = rectangle["column"]
+#     total_rows = []
+#     start = 0
+#     end = rectangle["column"]
 
-    while len(chars) - end > 1:
-        each_row = chars[start:end]
-        total_rows.append(each_row)
-        start = end
-        end += rectangle["column"]
+#     while len(chars) - end > 1:
+#         each_row = chars[start:end]
+#         total_rows.append(each_row)
+#         start = end
+#         end += rectangle["column"]
 
-    total_rows.append(chars[start:])
+#     total_rows.append(chars[start:])
 
-    return total_rows
-
-
-# rectangle = create_rectangle("ifmanwasmeanttostayonthegroundgodwouldhavegivenusrootsff")
+#     return total_rows
 
 
-def encoded_words(parsed_rectangle):
-    print("p", parsed_rectangle)
-    cols = [list(col) for col in zip(*parsed_rectangle)]
-    return " ".join(["".join(word) + " " for word in cols])
+# # rectangle = create_rectangle("ifmanwasmeanttostayonthegroundgodwouldhavegivenusrootsff")
 
 
-# encode = encoded_words(rectangle_with_parsed_words)
-# print(encode)
-def cipher_text(plain_text):
+# def encoded_words(parsed_rectangle):
+#     print("p", parsed_rectangle)
+#     cols = [list(col) for col in zip(*parsed_rectangle)]
+#     return " ".join(["".join(word) + " " for word in cols])
 
-    chars = normalize_string(plain_text)
-    if len(chars) <= 1:
-        return chars
 
-    else:
-        rectangle = create_rectangle(chars)
-        rectangle_with_parsed_words = parse_rectangle(rectangle, chars)
-        encode = encoded_words(rectangle_with_parsed_words)
-        return encode
+# # encode = encoded_words(rectangle_with_parsed_words)
+# # print(encode)
+# def cipher_text(plain_text):
+
+#     chars = normalize_string(plain_text)
+#     if len(chars) <= 1:
+#         return chars
+
+#     else:
+#         rectangle = create_rectangle(chars)
+#         rectangle_with_parsed_words = parse_rectangle(rectangle, chars)
+#         encode = encoded_words(rectangle_with_parsed_words)
+#         return encode
 
