@@ -15,7 +15,7 @@ def create_rectangle(chars):
     row = 1
     col = 1
 
-    while row * col <= len(chars):
+    while row * col < len(chars):
         if (col < row) or (col - row > 1):
             row += 1
             continue

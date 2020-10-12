@@ -14,33 +14,60 @@ def normalize_string(plain_text):
 chars = normalize_string(value)
 
 
-def create_rectangle(chars):
-    row = 0
-    col = 1
-
-    col_larger_eq_row = col >= row
-    col_only_greater_by_one = col - row < -1
-    min_length = row * col < len(chars)
-
-    # I need to have some condintion to get the cols and rows to stop incrementing
-    while True:
-        
-
-        if not col_larger_eq_row and not col_only_greater_by_one:
-            col += 1
-
-        row += 1
-    return {"row": row, "column": col}
-    # return row, col
+# def create_rectangle(chars):
+#     row = 0
+#     col = 1
 
 
-print(create_rectangle(chars))
-# while (col < row) or (col - row > 1):
-#     row += 1
-#         continue
-#     col += 1
-# return {"row": row, "column": col}
+#     # I need to have some condintion to get the cols and rows to stop incrementing
+#     while True:
 
+
+# print(create_rectangle(chars))
+
+
+c = 1
+
+total = 9
+
+"""
+col 1 has 2 possible row pairs: (0, 1)
+col 2 has 2 possbile row pairs: (1, 2)
+
+c r
+1 0
+1 1
+2 1
+2 2
+3 2
+3 3
+4 3
+4 4
+
+-First I create "row" numbers that could satisfy the 2 conditions
+-Then I sub those numbers into the cond to see what works
+
+-Add in r * c 
+"""
+
+
+def rect(c):
+    # modify to be while T bc don't know number of rows
+    for c in range(1, 5):
+        r = c - 1
+        # For each value in the outer for loop i need to do 2 things
+        for num in range(2):
+            print(c, r)
+            r += 1
+
+        # if c >= r and c - r <= 1:
+        #     print(r, c)
+        #     c += 1
+        #     r += 1
+    # return r, c
+
+
+print(rect(c))
 
 # rectangle = create_rectangle("thisisfun")
 
