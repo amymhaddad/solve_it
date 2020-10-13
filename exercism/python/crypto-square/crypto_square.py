@@ -48,23 +48,34 @@ c r
 -Then I sub those numbers into the cond to see what works
 
 -Add in r * c 
+
+Why put r = c - 1 inside the loop?
+Why can't I do the row/col check all in teh same line?
 """
 
 
 def rect(c):
     # modify to be while T bc don't know number of rows
-    for c in range(1, 5):
-        r = c - 1
-        # For each value in the outer for loop i need to do 2 things
+    col = 1
+    row = col - 1
+    while True:
+        # r = c - 1
+        # For each value in the outer for loop i need to do 2 things: see if c >= r and c-r >= 1
+        import pdb
+
+        pdb.set_trace()
         for num in range(2):
-            print(c, r)
-            r += 1
+            if row * col >= 9 and col >= row and col - row >= 1:
+                break
+
+            col += 1
+            row += 1
 
         # if c >= r and c - r <= 1:
         #     print(r, c)
         #     c += 1
         #     r += 1
-    # return r, c
+    return row, col
 
 
 print(rect(c))
