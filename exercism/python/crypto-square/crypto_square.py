@@ -46,36 +46,28 @@ c r
 
 -First I create "row" numbers that could satisfy the 2 conditions
 -Then I sub those numbers into the cond to see what works
+# # For each value in the outer for loop i need to do 2 things: see if c >= r and c-r <= 1
 
--Add in r * c 
+# IF i put "row" on the outside of the loop, then it gets updated on each iteration of loop.
+# BUT if I put it on the inside, then it only gets updated on after the completion of each loop
 
-Why put r = c - 1 inside the loop?
-Why can't I do the row/col check all in teh same line?
+#col is continuously updated -- which is what I want it to do. BUT row is reset each time -- after the completion of each inner loop.
+ 
 """
 
 
 def rect(c):
-    # modify to be while T bc don't know number of rows
+
     col = 1
-    row = col - 1
-    while True:
-        # r = c - 1
-        # For each value in the outer for loop i need to do 2 things: see if c >= r and c-r >= 1
-        import pdb
-
-        pdb.set_trace()
+    while col < 9:
+        row = col - 1
         for num in range(2):
-            if row * col >= 9 and col >= row and col - row >= 1:
-                break
-
-            col += 1
-            row += 1
-
-        # if c >= r and c - r <= 1:
-        #     print(r, c)
-        #     c += 1
-        #     r += 1
-    return row, col
+            if (row * col >= 54) and (col >= row and col - row <= 1):
+                return col, row
+            else:
+                row += 1
+            print(col, row)
+        col += 1
 
 
 print(rect(c))
