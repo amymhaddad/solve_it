@@ -1,7 +1,7 @@
 import re
 
-# value = "ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots"
-value = "This is fun"
+value = "ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots"
+# value = "This is fun"
 
 
 def normalize_string(plain_text):
@@ -14,86 +14,49 @@ def normalize_string(plain_text):
 chars = normalize_string(value)
 
 
-# def create_rectangle(chars):
-#     row = 0
-#     col = 1
-
-
-#     # I need to have some condintion to get the cols and rows to stop incrementing
-#     while True:
-
-
-# print(create_rectangle(chars))
-
-
-c = 1
-
-total = 9
-
-"""
-col 1 has 2 possible row pairs: (0, 1)
-col 2 has 2 possbile row pairs: (1, 2)
-
-c r
-1 0
-1 1
-2 1
-2 2
-3 2
-3 3
-4 3
-4 4
-
--First I create "row" numbers that could satisfy the 2 conditions
--Then I sub those numbers into the cond to see what works
-# # For each value in the outer for loop i need to do 2 things: see if c >= r and c-r <= 1
-
-# IF i put "row" on the outside of the loop, then it gets updated on each iteration of loop.
-# BUT if I put it on the inside, then it only gets updated on after the completion of each loop
-
-#col is continuously updated -- which is what I want it to do. BUT row is reset each time -- after the completion of each inner loop.
- 
-"""
-
-
-def rect(c):
+def create_rectangle(chars):
 
     col = 1
-    while col < 9:
+    while True:
         row = col - 1
         for num in range(2):
-            if (row * col >= 54) and (col >= row and col - row <= 1):
+            if (row * col >= len(chars)) and (col >= row and col - row <= 1):
                 return col, row
             else:
                 row += 1
-            print(col, row)
         col += 1
+    return col, row
 
 
-print(rect(c))
-
-# rectangle = create_rectangle("thisisfun")
-
-# print(rectangle)
+rectangle = create_rectangle(chars)
 
 
-# def parse_rectangle(rectangle, chars):
+def parse_rectangle(rectangle, chars):
 
-#     total_rows = []
-#     start = 0
-#     end = rectangle["column"]
+    start = 0
+    matrix = []
 
-#     while len(chars) - end > 1:
-#         each_row = chars[start:end]
-#         total_rows.append(each_row)
-#         start = end
-#         end += rectangle["column"]
+    col, row = rectangle
+    rect_length = col * row
 
-#     total_rows.append(chars[start:])
+    each_row = ""
+    for i in range(col * row):
+        if i >= len(chars):
+            each_row += " "
+            continue
+        else:
+            each_row += chars[i]
+        if len(each_row) == col:
+            matrix.append(each_row)
+            each_row = ""
+    matrix.append(each_row)
+    return matrix
 
-#     return total_rows
+
+print(parse_rectangle(rectangle, chars))
 
 
+# print(len("ifmanwas"))
 # # rectangle = create_rectangle("ifmanwasmeanttostayonthegroundgodwouldhavegivenusrootsff")
 
 

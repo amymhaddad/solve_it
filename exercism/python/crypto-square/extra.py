@@ -1,69 +1,27 @@
-import re
 
 
-def normalize_string(plain_text):
 
-    return "".join(
-        [char.lower() for char in plain_text if char.isalpha() or char.isdigit()]
-    )
+"""
+col 1 has 2 possible row pairs: (0, 1)
+col 2 has 2 possbile row pairs: (1, 2)
 
+c r
+1 0
+1 1
+2 1
+2 2
+3 2
+3 3
+4 3
+4 4
 
-# string = normalize_string(chars)
+-First I create "row" numbers that could satisfy the 2 conditions
+-Then I sub those numbers into the cond to see what works
+# # For each value in the outer for loop i need to do 2 things: see if c >= r and c-r <= 1
 
+# IF i put "row" on the outside of the loop, then it gets updated on each iteration of loop.
+# BUT if I put it on the inside, then it only gets updated on after the completion of each loop
 
-def create_rectangle(chars):
-    row = 1
-    col = 1
-
-    while row * col < len(chars):
-        if (col < row) or (col - row > 1):
-            row += 1
-            continue
-        col += 1
-    return {"row": row, "column": col}
-
-
-# rectangle = create_rectangle(string)
-# print(rectangle)
-
-
-def parse_rectangle(rectangle, chars):
-    total_rows = []
-    start = 0
-    end = rectangle["column"]
-
-    while end <= len(chars):
-        each_row = []
-        for letter in chars[start:end]:
-            each_row.append(letter)
-        total_rows.append(each_row)
-        start = end
-        end += rectangle["column"]
-
-    return total_rows
-
-
-def encoded_words(parsed_rectangle):
-    print("p", parsed_rectangle)
-    cols = [list(col) for col in zip(*parsed_rectangle)]
-    return " ".join(["".join(word) + " " for word in cols])
-
-
-# encode = encoded_words(rectangle_with_parsed_words)
-# print(encode)
-def cipher_text(plain_text):
-
-    chars = normalize_string(plain_text)
-    if len(chars) <= 1:
-        return chars
-
-    else:
-        rectangle = create_rectangle(chars)
-        rectangle_with_parsed_words = parse_rectangle(rectangle, chars)
-        encode = encoded_words(rectangle_with_parsed_words)
-        return encode
-
-
-value = "This is fun!"
-expected = "tsf hiu isn"
-print(cipher_text(value))
+#col is continuously updated -- which is what I want it to do. BUT row is reset each time -- after the completion of each inner loop.
+ 
+"""
