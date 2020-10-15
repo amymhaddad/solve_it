@@ -16,18 +16,52 @@ def normalize_string(plain_text):
 
     rect = []
     start = 0
-    stop = rows
+    stop = cols
     for i in range(rows):
         each_row = letters[start:stop]
         rect.append(each_row)
         start = stop
-        stop += rows
+        stop += cols
 
-    return rect
+    # cols = [list(col) for col in zip(*rect)]
+    # updated_phrase = "".join(["".join(word) + " " for word in cols])
+    # print(updated_phrase)
+    #  encoded_rect = [[rect[row][col] for row in range(rows)] for col in range(cols)]
+    nw = 0
+    r = []
+    encoded_word = ""
+    for i in range(rows):
+        # print(i)
+        for col in rect:
+            if len(encoded_word) > rows:
+                r.append(encoded_word)
+                encoded_word = ""
+            else:
+                encoded_word += col[nw]
+                nw += 1
+                continue
 
-    #     pdb.set_trace()
-    # rect = [letters[cols * i : cols * i + rows + 1] for i in range(rows)]
-    # encoded_rect = [[rect[row][col] for row in range(rows)] for col in range(cols)]
+    print(r)
+    # print(col[i])
+    # for col in rect:
+    #     print(col)
+
+
+# ['i', 'm', 't', 'g', 'd', 'v', 's']
+# ['f', 'e', 'a', 'r', 'w', 'e', 'r']
+# ['m', 'a', 'y', 'o', 'o', 'g', 'o']
+# ['a', 'n', 'o', 'u', 'u', 'i', 'o']
+# ['n', 't', 'n', 'n', 'l', 'v', 't']
+# ['w', 't', 't', 'd', 'd', 'e', 's']
+# ['a', 'o', 'h', 'g', 'h', 'n', ' ']
+
+# (['i', 'f', 'm', 'a', 'n', 'w', 'a', 's'],)
+# (['m', 'e', 'a', 'n', 't', 't', 'o', 's'],)
+# (['t', 'a', 'y', 'o', 'n', 't', 'h', 'e'],)
+# (['g', 'r', 'o', 'u', 'n', 'd', 'g', 'o'],)
+# (['d', 'w', 'o', 'u', 'l', 'd', 'h', 'a'],)
+# (['v', 'e', 'g', 'i', 'v', 'e', 'n', 'u'],)
+# (['s', 'r', 'o', 'o', 't', 's', ' '],)
 
 
 def create_rectangle(chars):
@@ -45,35 +79,6 @@ def create_rectangle(chars):
 
 
 print(normalize_string(value))
-# rectangle = create_rectangle(chars)
-
-
-# def rows(rectangle, chars):
-
-#     start = 0
-#     matrix = []
-
-#     col, row = rectangle
-#     rect_length = col * row
-
-#     each_row = ""
-#     for i in range(col * row):
-
-#         if i >= len(chars):
-#             each_row += " "
-#             continue
-#         else:
-#             each_row += chars[i]
-
-#         if len(each_row) == col:
-#             matrix.append(each_row)
-#             each_row = ""
-#     if each_row:
-#         matrix.append(each_row)
-#     return matrix
-
-
-# all_rows = rows(rectangle, chars)
 
 
 # def encoded_words(all_rows):
