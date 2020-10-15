@@ -1,7 +1,7 @@
 import re
 
-value = "ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots"
-# value = "This is fun"
+# value = "ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots"
+value = "This is fun"
 
 
 def normalize_string(plain_text):
@@ -29,9 +29,10 @@ def create_rectangle(chars):
 
 
 rectangle = create_rectangle(chars)
+print(rectangle)
 
 
-def parse_rectangle(rectangle, chars):
+def rows(rectangle, chars):
 
     start = 0
     matrix = []
@@ -41,29 +42,33 @@ def parse_rectangle(rectangle, chars):
 
     each_row = ""
     for i in range(col * row):
+
         if i >= len(chars):
             each_row += " "
             continue
         else:
             each_row += chars[i]
+
         if len(each_row) == col:
             matrix.append(each_row)
             each_row = ""
-    matrix.append(each_row)
+    if each_row:
+        matrix.append(each_row)
     return matrix
 
 
-print(parse_rectangle(rectangle, chars))
+all_rows = rows(rectangle, chars)
 
 
-# print(len("ifmanwas"))
-# # rectangle = create_rectangle("ifmanwasmeanttostayonthegroundgodwouldhavegivenusrootsff")
+def encoded_words(all_rows):
+    # import pdb
+
+    # pdb.set_trace()
+    cols = [list(col) for col in zip(*all_rows)]
+    return " ".join(["".join(word) + " " for word in cols])
 
 
-# def encoded_words(parsed_rectangle):
-#     print("p", parsed_rectangle)
-#     cols = [list(col) for col in zip(*parsed_rectangle)]
-#     return " ".join(["".join(word) + " " for word in cols])
+print(encoded_words(all_rows))
 
 
 # # encode = encoded_words(rectangle_with_parsed_words)
