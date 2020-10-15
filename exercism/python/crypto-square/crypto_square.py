@@ -1,4 +1,5 @@
-import re
+import itertools as it
+
 
 value = "ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots"
 # value = "This is fun"
@@ -29,17 +30,25 @@ def normalize_string(plain_text):
     #  encoded_rect = [[rect[row][col] for row in range(rows)] for col in range(cols)]
     nw = 0
     r = []
-    encoded_word = ""
-    for i in range(rows):
-        # print(i)
-        for col in rect:
-            if len(encoded_word) > rows:
-                r.append(encoded_word)
-                encoded_word = ""
-            else:
-                encoded_word += col[nw]
-                nw += 1
-                continue
+
+    cols = [list(col) for col in it.zip_longest(*rect, fillvalue=" ")]
+
+   
+
+    # for col in it.zip_longest(*rect, fillvalue=" "):
+    #     print(col[i])
+
+    # encoded_word = ""
+    # for i in range(rows):
+    #     # print(i)
+    #     for col in rect:
+    #         if len(encoded_word) > rows:
+    #             r.append(encoded_word)
+    #             encoded_word = ""
+    #         else:
+    #             encoded_word += col[nw]
+    #             nw += 1
+    #             continue
 
     print(r)
     # print(col[i])
