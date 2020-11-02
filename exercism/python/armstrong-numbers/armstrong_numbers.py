@@ -1,12 +1,9 @@
 def is_armstrong_number(number):
 
-    given_number = number
-    total = 0
-    total_digits = len(list(map(int, str(given_number))))
+    total, given_number = 0, number
 
     while given_number > 0:
-
-        total += (given_number % 10) ** total_digits
+        total += (given_number % 10) ** len(str(number))
         given_number //= 10
 
     return number == total
