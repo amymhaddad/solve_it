@@ -2,9 +2,7 @@ def convert(number):
     factors = get_factors(number)
     raindrop_sounds = get_raindrop_sounds(factors)
 
-    if not raindrop_sounds:
-        return str(number)
-    return raindrop_sounds
+    return raindrop_sounds or str(number)
 
 
 def get_factors(number):
