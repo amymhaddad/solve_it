@@ -1,41 +1,32 @@
+
+const fp = require('lodash/fp')
+
 export const classify = (number) => {
-	if (number <= 0) throw 'Classification is only possible for natural numbers.';
-	if (number <= 3) return 'deficient';
+	if (number < 1) {
+		throw new Error('Classification is only possible for natural numbers.')
+	}
 
-	let total_factors = factors(number);
+	const sum_of_factors = sumOfFactors(number);
 
-	let sum = sum_factors(total_factors);
-	if (isPerfect(sum, number)) return 'perfect';
-	if (isAbundant(sum, number)) return 'abundant';
-	else return 'deficient';
+	return (
+		isPerfect(sum_of_factors, number) || isAbundant(sum_of_factors, number) || isDeficient(sum_of_factors, number)
+	)
+
 };
 
-function isPerfect(sum, number) {
-	return sum === number;
+function sumOfFactors(number) {
+	return fp.sum(fp.range(1, number).filter(num => number % num === 0))
 }
 
-function isAbundant(sum, number) {
-	return sum > number;
+
+function isPerfect(sum_of_factors, number) {
+	if (sum_of_factors === number) return "perfect";
 }
 
-function factors(number) {
-	let total_factors = [];
-	let i = 2;
-
-	while (i != number) {
-		if (number % i === 0) {
-			total_factors.push(i);
-			i += 1;
-		} else {
-			i += 1;
-		}
-	}
-	total_factors.push(1);
-	return total_factors;
+function isAbundant(sum_of_factors, number) {
+	if (sum_of_factors > number) return "abundant";
 }
 
-function sum_factors(factors) {
-	return factors.reduce((acc, curr) => {
-		return (acc += curr);
-	});
+function isDeficient(sum_of_factors, number) {
+	if (sum_of_factors < number) return "deficient";
 }
