@@ -46,19 +46,11 @@ class WordCountTest(unittest.TestCase):
             {"first": 1, "don't": 2, "laugh": 1, "then": 1, "cry": 1},
         )
 
-<<<<<<< HEAD
-    # def test_with_quotations(self):
-    #     self.assertEqual(
-    #         count_words("Joe can't tell between 'large' and large."),
-    #         {"joe": 1, "can't": 1, "tell": 1, "between": 1, "large": 2, "and": 1},
-    #     )
-=======
     def test_with_quotations(self):
         self.assertEqual(
             count_words("Joe can't tell between 'large' and large."),
             {"joe": 1, "can't": 1, "tell": 1, "between": 1, "large": 2, "and": 1},
         )
->>>>>>> word_count
 
     def test_substrings_from_the_beginning(self):
         self.assertEqual(
@@ -85,38 +77,8 @@ class WordCountTest(unittest.TestCase):
             count_words(",\n,one,\n ,two \n 'three'"), {"one": 1, "two": 1, "three": 1}
         )
 
-    # # Additional tests for this track
+    # #     # Additional tests for this track
 
-<<<<<<< HEAD
-    # def test_tabs(self):
-    #     self.assertEqual(
-    #         count_words(
-    #             "rah rah ah ah ah	roma roma ma	ga ga oh la la	want your bad romance"
-    #         ),
-    #         {
-    #             "rah": 2,
-    #             "ah": 3,
-    #             "roma": 2,
-    #             "ma": 1,
-    #             "ga": 2,
-    #             "oh": 1,
-    #             "la": 2,
-    #             "want": 1,
-    #             "your": 1,
-    #             "bad": 1,
-    #             "romance": 1,
-    #         },
-    #     )
-
-    # def test_non_alphanumeric(self):
-    #     self.assertEqual(
-    #         count_words("hey,my_spacebar_is_broken"),
-    #         {"hey": 1, "my": 1, "spacebar": 1, "is": 1, "broken": 1},
-    #     )
-
-    # def test_multiple_apostrophes_ignored(self):
-    #     self.assertEqual(count_words("''hey''"), {"hey": 1})
-=======
     def test_tabs(self):
         self.assertEqual(
             count_words(
@@ -145,7 +107,6 @@ class WordCountTest(unittest.TestCase):
 
     def test_multiple_apostrophes_ignored(self):
         self.assertEqual(count_words("''hey''"), {"hey": 1})
->>>>>>> word_count
 
 
 if __name__ == "__main__":
