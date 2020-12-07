@@ -1,8 +1,7 @@
 def slices(series, length):
     if length > len(series) or length <= 0:
         raise ValueError("Invalid length")
-    if length == len(series):
-        return [series]
+
     substrings = []
     i = 0
     while length < len(series):
