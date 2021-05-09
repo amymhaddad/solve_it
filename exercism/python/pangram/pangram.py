@@ -57,3 +57,17 @@ def is_pangram(sentence):
             letter_index = letters.index(char)
             letters.pop(letter_index)
     return len(letters) == 0
+
+
+# array v2
+def is_pangram(sentence):
+    alphabet_length = 26
+    ascii_start = 97
+    total_letters = [0 for i in range(alphabet_length)]
+
+    for i, char in enumerate(sentence):
+        if char.isalpha():
+            letter_index = ord(char.lower()) - ascii_start
+            total_letters[letter_index] = 1
+
+    return sum(total_letters) == alphabet_length
